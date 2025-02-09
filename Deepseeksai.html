@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00ff9d;
+            --secondary: #00a3ff;
+            --bg: #0a0a0a;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: var(--bg);
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Glassmorphism effect */
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            margin: 1rem 0;
+        }
+
+        /* Neon text effect */
+        .neon {
+            text-shadow: 0 0 10px var(--primary),
+                         0 0 20px var(--primary),
+                         0 0 30px var(--primary);
+        }
+
+        /* Grid layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Interactive card */
+        .card {
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Terminal effect */
+        .terminal {
+            background: #000;
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: monospace;
+            position: relative;
+        }
+
+        .terminal::before {
+            content: "Terminal";
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background: var(--bg);
+            padding: 0 5px;
+            color: var(--primary);
+            font-size: 0.8rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            animation: fadeIn 0.8s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <header class="glass animate" style="margin-top: 2rem; text-align: center;">
+            <h1 class="neon" style="font-size: 3rem; margin-bottom: 1rem;">🤖 AI Assistant</h1>
+            <div style="background: linear-gradient(90deg, var(--primary), var(--secondary)); 
+                      width: 100px; height: 3px; margin: 0 auto;"></div>
+            <p style="margin-top: 2rem; opacity: 0.8;">
+                Next Generation AI Assistant<br>
+                Powered by Advanced Language Models
+            </p>
+        </header>
+
+        <!-- Capabilities Grid -->
+        <div class="grid" style="margin: 4rem 0;">
+            <div class="glass card animate">
+                <h3><i class="fas fa-brain"></i> Core Features</h3>
+                <ul style="margin-top: 1rem; list-style: none;">
+                    <li>▸ Natural Language Processing</li>
+                    <li>▸ Contextual Understanding</li>
+                    <li>▸ Multi-language Support</li>
+                    <li>▸ Continuous Learning</li>
+                </ul>
+            </div>
+
+            <div class="glass card animate" style="animation-delay: 0.2s;">
+                <h3><i class="fas fa-chart-line"></i> Performance</h3>
+                <div style="margin-top: 1rem;">
+                    <div class="terminal">
+                        > Response Time: 0.8s<br>
+                        > Accuracy: 98.7%<br>
+                        > Uptime: 99.99%<br>
+                        > Knowledge Cutoff: 2023-10
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Section -->
+        <div class="glass animate" style="animation-delay: 0.4s;">
+            <h2>🛠️ Technical Architecture</h2>
+            <div style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
+                <div style="padding: 0.5rem 1rem; background: rgba(0,255,157,0.1); border-radius: 5px;">
+                    Transformer Model
+                </div>
+                <div style="padding: 0.5rem 1rem; background: rgba(0,163,255,0.1); border-radius: 5px;">
+                    RLHF Training
+                </div>
+                <div style="padding: 0.5rem 1rem; background: rgba(255,255,255,0.1); border-radius: 5px;">
+                    Cloud Infrastructure
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Simulation -->
+        <div class="glass animate" style="margin-top: 2rem; animation-delay: 0.6s;">
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <div style="width: 40px; height: 40px; background: var(--primary); border-radius: 50%;"></div>
+                <div>
+                    <p>Try asking me something:</p>
+                    <div class="terminal" style="margin-top: 0.5rem;">
+                        > Hello! How can I assist you today?
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.glass').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // Dynamic theme switching
+        const colors = {
+            primary: ['#00ff9d', '#ff00ff'],
+            secondary: ['#00a3ff', '#ff5500']
+        };
+
+        let colorIndex = 0;
+        setInterval(() => {
+            document.documentElement.style.setProperty('--primary', colors.primary[colorIndex]);
+            document.documentElement.style.setProperty('--secondary', colors.secondary[colorIndex]);
+            colorIndex = (colorIndex + 1) % colors.primary.length;
+        }, 5000);
+    </script>
+</body>
+</html>
